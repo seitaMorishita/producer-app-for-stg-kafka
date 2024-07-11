@@ -12,10 +12,6 @@ pipeline {
         K8S_NAMESPACE = 'default'
     }
 
-    tools {
-        maven 'apache-maven-3.0.4'
-    }
-
     stages {
         stage('Checkout') {
             steps {
