@@ -1,9 +1,19 @@
+def FLOW = [
+  [env: "beta",    clusterId: "jpe1-caas1-dev1", namespace: "${env.JOB_NAME.split('/')[3]}", image: "build"],
+]
+def ENV_LIST = FLOW.collect{ it.env }
+def flow
+
 pipeline {
     agent any
 
     environment {
         DOCKER_IMAGE = 'producer-app-for-stg-kafka:latest'
         K8S_NAMESPACE = 'default'
+    }
+
+    tools {
+        maven 'apache-maven-3.0.4'
     }
 
     stages {
