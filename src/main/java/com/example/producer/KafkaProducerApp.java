@@ -1,0 +1,49 @@
+package com.example.producer;
+
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
+
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Properties;
+import java.util.concurrent.ExecutionException;
+
+public class KafkaProducerApp {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        Properties props = KafkaProducerConfig.getProducerProperties();
+        KafkaProducer<String, String> producer = new KafkaProducer<>(props);
+
+        String topic = "stg_order_information";
+
+        int i = 0;
+        long dateNum = 11111111;
+        String orderNumber = "504523-" + dateNum + "-00000101";
+        while (true) {
+            ProducerRecord<String, String> record = new ProducerRecord<>(topic, orderNumber, orderInfo(dateNum));
+            System.out.println("Producing batch: " + i);
+            RecordMetadata metadata = producer.send(record).get();
+            System.out.printf("Sent record(key=%s value=%s) " +
+                            "meta(partition=%d, offset=%d)\n",
+                    record.key(), record.value(), metadata.partition(), metadata.offset());
+            i += 1;
+            dateNum++;
+            try {
+                Thread.sleep(60000); // 1分待機
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                break;
+            }
+        }
+        producer.close();
+    }
+
+    private static String orderInfo(long dateNum) {
+        ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+
+        String formattedDate = now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        String orderInfo = "{\"resourceId\":\"504523-" + dateNum + "-00000101\",\"action\":\"CREATE\",\"body\":{\"orderNumber\":\"504523-" + dateNum + "-00000101\",\"orderDate\":\"" + formattedDate + "\",\"shop\":{\"shopId\":504523,\"shopUrl\":\"globalfpd01\"}}}";
+        return orderInfo;
+    }
+}

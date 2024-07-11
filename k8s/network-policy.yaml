@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: producer-app-for-stg-kafka-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: producer-app-for-stg-kafka
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - ipBlock:
+            cidr: 100.99.140.91/32
+      ports:
+        - protocol: TCP
+          port: 88
+    - to:
+        - ipBlock:
+            cidr: 100.99.140.92/32
+      ports:
+        - protocol: TCP
+          port: 88
+    - to:
+        - ipBlock:
+            cidr: 100.99.122.207/32
+      ports:
+        - protocol: TCP
+          port: 9092
+    - to:
+        - ipBlock:
+            cidr: 100.99.122.209/32
+      ports:
+        - protocol: TCP
+          port: 9092

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer-app-for-stg-kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: producer-app-for-stg-kafka
+  template:
+    metadata:
+      labels:
+        app: producer-app-for-stg-kafka
+    spec:
+      containers:
+        - name: producer-app-for-stg-kafka
+          image: seita.morishita/producer-app-for-stg-kafka:latest
+          ports:
+            - containerPort: 8080
