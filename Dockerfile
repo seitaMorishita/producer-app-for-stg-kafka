@@ -9,7 +9,8 @@ COPY src /app/src
 
 RUN mvn clean package
 
-FROM openjdk:11-jre-slim
+#FROM openjdk:11-jre-slim
+FROM registry-jpe2.r-local.net/ccbd-sens-batch-order-miguel/openjdk@sha256:285c61a1e5e6b7b3709729b69558670148c5fdc6eb7104fae7dd370042c51430 as package
 
 WORKDIR /app
 
