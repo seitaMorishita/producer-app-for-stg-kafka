@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: producer-app-for-stg-kafka
-          image: seita.morishita/producer-app-for-stg-kafka:latest
+          image: producer-app-for-stg-kafka
           ports:
             - containerPort: 8080
