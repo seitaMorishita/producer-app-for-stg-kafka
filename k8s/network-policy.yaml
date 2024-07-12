@@ -35,13 +35,7 @@ spec:
           port: 9092
     - to:
         - ipBlock:
-            cidr: 100.99.140.91/32
-      ports:
-        - protocol: TCP
-          port: 88
+            cidr: 100.78.0.0/16 # admin server
     - to:
         - ipBlock:
-            cidr: 100.99.140.92/32
-      ports:
-        - protocol: TCP
-          port: 88
+            cidr: 100.104.0.0/16 # brokers and KDCs
