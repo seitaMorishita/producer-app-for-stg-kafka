@@ -7,6 +7,16 @@ def flow
 pipeline {
     agent any
 
+    options {
+      ansiColor('xterm')
+      buildDiscarder(logRotator(numToKeepStr: '20'))
+      timeout(time: 30, unit: 'MINUTES')
+      timestamps()
+    }
+
+    parameters {
+      choice(choices: ENV_LIST, description: 'Please choose environment you want to deploy!', name: 'ENVIRONMENT')
+    }
     environment {
         // Get app name from Jenkins job url.
         // e.g, /Tenant/caas-pipeline/Namespace/caas-jenkins/Apps/nginx/ => APP_NAME=nginx
