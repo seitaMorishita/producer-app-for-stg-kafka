@@ -19,14 +19,6 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build') {
-            steps {
-                script {
-                    // Mavenを使用してアプリケーションをビルド
-                    sh 'mvn clean package'
-                }
-            }
-        }
         stage('Build Docker Image') {
             steps {
                 script {
