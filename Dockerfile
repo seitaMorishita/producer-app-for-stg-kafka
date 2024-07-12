@@ -28,7 +28,7 @@ RUN chown -R ${USER_ID}:${GROUP_ID} /app/producer-app-for-stg-kafka.jar
 COPY kerberos-config/ /app/kerberos-config/
 
 # ログディレクトリを作成
-RUN mkdir -p /usr/local/logs && chown -R appuser:appuser /usr/local/logs
+RUN mkdir -p /usr/local/logs
 RUN chown -R ${USER_ID}:${GROUP_ID} /usr/local/logs
 
 USER $USER_NAME
