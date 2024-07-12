@@ -14,7 +14,6 @@ ARG GROUP_ID=1000
 ARG GROUP_NAME=bizexpuser
 ARG USER_ID=1000
 ARG USER_NAME=bizexpuser
-ARG ENVIRONMENT
 
 RUN groupadd -g $GROUP_ID $GROUP_NAME && useradd -g $GROUP_ID -u $USER_ID -m $USER_NAME
 
@@ -31,7 +30,7 @@ COPY kerberos-config/ /app/kerberos-config/
 RUN mkdir -p /usr/local/logs
 RUN chown -R ${USER_ID}:${GROUP_ID} /usr/local/logs
 
-USER $USER_NAME
+USER 1000
 
 # アプリケーションを実行
 CMD ["java", "-Djava.security.auth.login.config=/app/kerberos-config/kafka_client_jaas.conf", \
