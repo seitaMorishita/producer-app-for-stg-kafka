@@ -17,3 +17,5 @@ spec:
           image: producer-app-for-stg-kafka
           ports:
             - containerPort: 8080
+      serviceAccountName: tenant-pod-default
+      automountServiceAccountToken: true # Istio sidecar needs to communicate with k8s API
