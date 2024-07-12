@@ -11,6 +11,8 @@ RUN mvn clean package
 
 FROM openjdk:11-jre-slim
 
+RUN useradd -ms /bin/bash appuser
+
 WORKDIR /app
 
 COPY --from=build /app/target/producer-app-for-stg-kafka-1.0-SNAPSHOT.jar /app/producer-app-for-stg-kafka.jar
@@ -19,7 +21,9 @@ COPY --from=build /app/target/producer-app-for-stg-kafka-1.0-SNAPSHOT.jar /app/p
 COPY kerberos-config/ /app/kerberos-config/
 
 # ログディレクトリを作成
-RUN mkdir -p /usr/local/logs
+RUN mkdir -p /usr/local/logs && chown -R appuser:appuser /usr/local/logs
+
+USER appuser
 
 # アプリケーションを実行
 CMD ["java", "-Djava.security.auth.login.config=/app/kerberos-config/kafka_client_jaas.conf", \
