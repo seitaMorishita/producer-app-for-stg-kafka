@@ -19,7 +19,7 @@ public class KafkaProducerApp {
 
         int i = 0;
         long dateNum = 11111111;
-        String orderNumber = "504523-" + dateNum + "-00000101";
+        String orderNumber = "514523-" + dateNum + "-00000101";
         while (true) {
             ProducerRecord<String, String> record = new ProducerRecord<>(topic, orderNumber, orderInfo(dateNum));
             System.out.println("Producing batch: " + i);
@@ -44,7 +44,7 @@ public class KafkaProducerApp {
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
 
         String formattedDate = now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-        String orderInfo = "{\"resourceId\":\"504523-" + dateNum + "-00000101\",\"action\":\"CREATE\",\"body\":{\"orderNumber\":\"504523-" + dateNum + "-00000101\",\"orderDate\":\"" + formattedDate + "\",\"shop\":{\"shopId\":504523,\"shopUrl\":\"globalfpd01\"}}}";
+        String orderInfo = "{\"resourceId\":\"514523-" + dateNum + "-00000101\",\"action\":\"CREATE\",\"body\":{\"orderNumber\":\"514523-" + dateNum + "-00000101\",\"orderDate\":\"" + formattedDate + "\",\"shop\":{\"shopId\":514523,\"shopUrl\":\"globalfpd01\"}}}";
         return orderInfo;
     }
 }
