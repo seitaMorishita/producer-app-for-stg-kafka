@@ -28,13 +28,14 @@ public class KafkaProducerApp {
                             "meta(partition=%d, offset=%d)\n",
                     record.key(), record.value(), metadata.partition(), metadata.offset());
             i += 1;
+            if (i >= 300000) break;
             dateNum++;
-            try {
-                Thread.sleep(60000); // 1分待機
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                break;
-            }
+//            try {
+//                Thread.sleep(60000); // 1分待機
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//                break;
+//            }
         }
         producer.close();
     }
