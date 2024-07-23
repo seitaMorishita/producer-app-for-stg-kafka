@@ -15,7 +15,7 @@ public class KafkaProducerApp {
         Properties props = KafkaProducerConfig.getProducerProperties();
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
 
-        String topic = "stg_order_information";
+        String topic = "stg_rise_db_created_order_information";
 
         int i = 0;
         long dateNum = 11111111;
@@ -30,12 +30,12 @@ public class KafkaProducerApp {
             i += 1;
             if (i >= 100000) break;
             dateNum++;
-//            try {
-//                Thread.sleep(60000); // 1分待機
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//                break;
-//            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                break;
+            }
         }
         producer.close();
     }
