@@ -33,21 +33,3 @@ spec:
       ports:
         - protocol: TCP
           port: 9092
-    - to:
-        - ipBlock:
-            cidr: 100.104.50.1/32
-      ports:
-        - protocol: TCP
-          port: 88
-    - to:
-        - ipBlock:
-            cidr: 100.104.50.2/32
-      ports:
-        - protocol: TCP
-          port: 88
-    - to:
-        - ipBlock:
-            cidr: 100.78.134.38/32
-      ports:
-        - protocol: TCP
-          port: 2749
