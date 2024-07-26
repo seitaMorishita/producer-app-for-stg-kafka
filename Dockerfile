@@ -33,7 +33,6 @@ RUN chown -R ${USER_ID}:${GROUP_ID} /usr/local/logs
 USER 1000
 
 # アプリケーションを実行
-CMD ["java", "-Djava.security.auth.login.config=/app/kerberos-config/kafka_client_jaas.conf", \
-             "-Djava.security.krb5.conf=/app/kerberos-config/krb5.conf", \
+CMD ["java", "-Djava.security.krb5.conf=/app/kerberos-config/krb5.conf", \
              "-jar", "producer-app-for-stg-kafka.jar"]
 #FROM registry-jpe1.r-local.net/ccbd-sens-sandbox-kafka-test/docker-container/producer-app-for-stg-kafka@sha256:efd8286811eec847982e260ae8584483d2f84ac4eabdfb388fbcec60fc66ffd9
