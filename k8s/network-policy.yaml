@@ -11,18 +11,6 @@ spec:
   egress:
     - to:
         - ipBlock:
-            cidr: 100.99.140.91/32
-      ports:
-        - protocol: TCP
-          port: 88
-    - to:
-        - ipBlock:
-            cidr: 100.99.140.92/32
-      ports:
-        - protocol: TCP
-          port: 88
-    - to:
-        - ipBlock:
             cidr: 100.99.122.207/32
       ports:
         - protocol: TCP
