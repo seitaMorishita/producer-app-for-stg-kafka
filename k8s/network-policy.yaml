@@ -11,6 +11,31 @@ spec:
   egress:
     - to:
         - ipBlock:
+            cidr: 100.78.0.0/16 # admin server
+    - to:
+        - ipBlock:
+            cidr: 100.104.0.0/16 # brokers and KDCs
+    # Object storage
+    - to:
+        - ipBlock:
+            cidr: 100.99.126.37/32
+      ports:
+        - port: 443
+    # Log platform
+    - to:
+        - ipBlock:
+            cidr: 100.99.100.0/22
+      ports:
+        - port: 6249
+    # SMTP
+    - to:
+        - ipBlock:
+            cidr: 100.72.13.1/32
+      ports:
+        - port: 25
+    # KDC servers
+    - to:
+        - ipBlock:
             cidr: 100.99.140.91/32
       ports:
         - protocol: TCP
@@ -21,6 +46,7 @@ spec:
       ports:
         - protocol: TCP
           port: 88
+    # Kafka Broker in SENS
     - to:
         - ipBlock:
             cidr: 100.99.122.207/32
