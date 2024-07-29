@@ -15,7 +15,7 @@ public class KafkaProducerApp {
         Properties props = KafkaProducerConfig.getProducerProperties();
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
 
-        String topic = "stg_rise_db_created_order_information2";
+        String topic = "stg_rise_db_created_order_information";
 
         int i = 0;
         long dateNum = 11111111;
