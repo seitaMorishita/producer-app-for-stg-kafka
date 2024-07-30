@@ -10,7 +10,7 @@ public class KafkaProducerConfig {
     public static Properties getProducerProperties() {
 
 //        String bootstrapServers = "host.docker.internal:9093";
-        String bootstrapServers = "omnia-ccbd-sens-kafka-sens-kafka-stg01.kaas.jpe2b.dcnw.rakuten:9092,omnia-ccbd-sens-kafka-sens-kafka-stg02.kaas.jpe2b.dcnw.rakuten:9092";
+        String bootstrapServers = "omnia-ccbd-sens-kafka-sens-kafka-stg01.kaas.jpe2b.dcnw.rakuten:9092,omnia-ccbd-sens-kafka-sens-kafka-stg02.kaas.jpe2b.dcnw.rakuten:9092,omnia-ccbd-sens-kafka-sens-kafka-stg03.kaas.jpe2b.dcnw.rakuten:9092";
         String saslMechanism = "GSSAPI";
         String keyTabPath = "/app/kerberos-config/batch-order-miguel-stg.keytab";
         String principal = "batch-order-miguel-stg@KAFKA200.GEAP.RAKUTEN.COM";
