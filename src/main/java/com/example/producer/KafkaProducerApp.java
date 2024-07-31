@@ -31,7 +31,7 @@ public class KafkaProducerApp {
             if (i >= 100000) break;
             dateNum++;
             try {
-                Thread.sleep(600000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 break;
@@ -44,8 +44,7 @@ public class KafkaProducerApp {
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
 
         String formattedDate = now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
-//        String orderInfo = "{\"resourceId\":\"514523-" + dateNum + "-00000101\",\"action\":\"CREATE\",\"body\":{\"orderNumber\":\"514523-" + dateNum + "-00000101\",\"orderDate\":\"" + formattedDate + "\",\"shop\":{\"shopId\":514523,\"shopUrl\":\"globalfpd01\"}}}";
-        String orderInfo = "{\"resourceId\":\"514523-" + dateNum + "-00000101\",\"action\":\"CREATE\",\"body\":{\"orderNumber\":\"Start-+**+-*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*123456789*1234-+**+-End\",\"orderDate\":\"" + formattedDate + "\",\"shop\":{\"shopId\":514523,\"shopUrl\":\"globalfpd01\"}}}";
+        String orderInfo = "{\"resourceId\":\"514523-" + dateNum + "-00000101\",\"action\":\"CREATE\",\"body\":{\"orderNumber\":\"514523-" + dateNum + "-00000101\",\"orderDate\":\"" + formattedDate + "\",\"shop\":{\"shopId\":514523,\"shopUrl\":\"globalfpd01\"}}}";
         return orderInfo;
     }
 }
