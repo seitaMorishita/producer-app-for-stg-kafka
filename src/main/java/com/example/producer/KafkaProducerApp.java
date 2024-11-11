@@ -2,13 +2,13 @@ package com.example.producer;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 public class KafkaProducerApp {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
@@ -25,6 +25,7 @@ public class KafkaProducerApp {
             System.out.println("Producing batch: " + i);
             producer.send(record);
             i += 1;
+            TimeUnit.NANOSECONDS.sleep(900_000);
             dateNum++;
         }
     }
