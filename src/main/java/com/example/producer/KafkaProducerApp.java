@@ -15,7 +15,7 @@ public class KafkaProducerApp {
         Properties props = KafkaProducerConfig.getProducerProperties();
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
 
-        String topic = "stg_rise_db_created_order_information";
+        String topic = "kafka_consumer_test";
 
         int i = 0;
         long dateNum = 11111111;
@@ -23,21 +23,10 @@ public class KafkaProducerApp {
         while (true) {
             ProducerRecord<String, String> record = new ProducerRecord<>(topic, orderNumber, orderInfo(dateNum));
             System.out.println("Producing batch: " + i);
-            RecordMetadata metadata = producer.send(record).get();
-            System.out.printf("Sent record(key=%s value=%s) " +
-                            "meta(partition=%d, offset=%d)\n",
-                    record.key(), record.value(), metadata.partition(), metadata.offset());
+            producer.send(record);
             i += 1;
-            if (i >= 100000) break;
             dateNum++;
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-                break;
-            }
         }
-        producer.close();
     }
 
     private static String orderInfo(long dateNum) {
